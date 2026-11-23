@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-export default function Logo({ className = "w-9 h-9", showText = true, subtitle = "INGENIERO EN TI" }) {
+export default function Logo({ className = "w-9 h-9", showText = true, subtitle = "Desarrollador" }) {
   return (
     <div className="flex items-center space-x-3 group cursor-pointer select-none">
       <div className={`relative flex items-center justify-center ${className} transition-transform duration-300 group-hover:scale-105`}>
@@ -57,7 +57,7 @@ export default function Logo({ className = "w-9 h-9", showText = true, subtitle 
       {showText && (
         <div className="flex flex-col">
           <span className="font-extrabold tracking-tight text-base sm:text-lg text-slate-900 dark:text-white leading-tight">
-            CARLOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-400 dark:to-indigo-400">NOA</span>
+            NOAH <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-400 dark:to-indigo-400">DEV</span>
           </span>
           <span className="text-[10px] font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 -mt-0.5">
             {subtitle}
