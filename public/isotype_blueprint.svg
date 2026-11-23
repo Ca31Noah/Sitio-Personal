@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" fill="none">
+  <!-- Fondo Blueprint Técnico -->
+  <rect width="512" height="512" rx="96" fill="#0A0E17"/>
+
+  <defs>
+    <!-- Patrón de Retícula de Ingeniería -->
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+    <pattern id="majorGrid" width="128" height="128" patternUnits="userSpaceOnUse">
+      <path d="M 128 0 L 0 0 0 128" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,4"/>
+    </pattern>
+
+    <!-- Gradiente Cyan-Azure -->
+    <linearGradient id="blueprintGradient" x1="96" y1="128" x2="416" y2="384" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="60%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+
+    <filter id="blueprintGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Malla de Fondo -->
+  <rect width="512" height="512" rx="96" fill="url(#grid)" />
+  <rect width="512" height="512" rx="96" fill="url(#majorGrid)" />
+
+  <!-- Círculos de Construcción y Ejes Guía (Blueprint Guides) -->
+  <circle cx="256" cy="256" r="192" stroke="#0EA5E9" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="6,6" fill="none"/>
+  <circle cx="256" cy="256" r="128" stroke="#0EA5E9" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="4,4" fill="none"/>
+  <line x1="256" y1="32" x2="256" y2="480" stroke="#0EA5E9" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="8,8"/>
+  <line x1="32" y1="256" x2="480" y2="256" stroke="#0EA5E9" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="8,8"/>
+
+  <!-- Líneas de Acotación y Tangentes de Construcción -->
+  <line x1="96" y1="136" x2="416" y2="136" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="2,4"/>
+  <line x1="96" y1="376" x2="416" y2="376" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="2,4"/>
+
+  <!-- Glow Blueprint -->
+  <g opacity="0.3" filter="url(#blueprintGlow)">
+    <path d="M 195 136 L 96 256 L 195 376" stroke="#38BDF8" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 256 376 L 256 136 L 416 376 L 416 136" stroke="#38BDF8" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Isotipo Principal -->
+  <!-- C: Bracket Angular -->
+  <path d="M 195 136 L 96 256 L 195 376" 
+        stroke="url(#blueprintGradient)" 
+        stroke-width="34" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+
+  <!-- N: Monograma Técnico -->
+  <path d="M 256 376 L 256 136 L 416 376 L 416 136" 
+        stroke="#F8FAFC" 
+        stroke-width="34" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+
+  <!-- Nodos de Coordenadas de Construcción (Vértices de Precisión) -->
+  <circle cx="195" cy="136" r="5" fill="#38BDF8"/>
+  <circle cx="96" cy="256" r="5" fill="#38BDF8"/>
+  <circle cx="195" cy="376" r="5" fill="#38BDF8"/>
+  <circle cx="256" cy="376" r="5" fill="#F8FAFC"/>
+  <circle cx="256" cy="136" r="5" fill="#F8FAFC"/>
+  <circle cx="416" cy="376" r="5" fill="#F8FAFC"/>
+  <circle cx="416" cy="136" r="5" fill="#F8FAFC"/>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" fill="none">
+  <!-- Fondo Dark Mode Profesional -->
+  <rect width="512" height="512" rx="96" fill="#0A0E17"/>
+  
+  <defs>
+    <!-- Gradiente Cyan-Azure Tech -->
+    <linearGradient id="cnGradient" x1="96" y1="128" x2="416" y2="384" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="60%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+
+    <!-- Glow sutil de profundidad -->
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Aura / Glow -->
+  <g opacity="0.2" filter="url(#subtleGlow)">
+    <path d="M 195 136 L 96 256 L 195 376" stroke="#38BDF8" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 256 376 L 256 136 L 416 376 L 416 136" stroke="#38BDF8" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Símbolo Principal: Geometría de Alta Precisión -->
+  <!-- Letra C: Bracket de Código Angular `<` -->
+  <path d="M 195 136 L 96 256 L 195 376" 
+        stroke="url(#cnGradient)" 
+        stroke-width="34" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+
+  <!-- Letra N: Arquitectura vertical con diagonal / de cierre de sintaxis -->
+  <path d="M 256 376 L 256 136 L 416 376 L 416 136" 
+        stroke="#F8FAFC" 
+        stroke-width="34" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>
