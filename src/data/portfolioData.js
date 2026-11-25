@@ -1,34 +1,20 @@
 ﻿export const personalInfo = {
   name: "Carlos Noa",
-  title: "Ingeniero en Tecnologías de la Información",
-  degree: "Ingeniería en Tecnologías de la Información",
-  institution: "Escuela Superior Politécnica de Chimborazo (ESPOCH) - Sede Orellana",
-  period: "2020 - 2026",
-  tagline: "Desarrollo soluciones digitales end-to-end, arquitecturas web interactivas, infraestructura de redes y gestión avanzada de datos.",
-  summary: "Ingeniero en TI de la ESPOCH con experiencia en desarrollo web, administración de infraestructura tecnológica, redes de telecomunicaciones y soporte técnico. Hábil en la implementación de soluciones digitales completas, gestión de bases de datos y desarrollo con lenguajes como Python, PHP, JavaScript y React. Orientado a resultados, con iniciativa para proyectos independientes y adaptación rápida a nuevas tecnologías.",
+  title: "Soluciones Tecnológicas Profesionales",
+  tagline: "Soluciones digitales end-to-end: desarrollo web, redes, cloud, soporte TI y analítica de datos.",
+  summary: "Servicios tecnológicos integrales para empresas y organizaciones: desarrollo de software, infraestructura de redes, soporte técnico, cloud computing, analítica y ciberseguridad.",
   location: "Orellana, Ecuador",
-  address: "Barrio Ñukanchi Wasi - Fernando Roy y Alirio",
+  address: "Orellana, Ecuador · Atención local y remota",
   email: "carlos.noa2001@gmail.com",
   phone: "0993480021",
   whatsappNumber: "593993480021",
   whatsappDisplay: "+593 993 480 021",
-  whatsappDefaultMessage: "Hola Carlos, vi tu página web y me gustaría cotizar tus servicios profesionales de Ingeniería en TI.",
+  whatsappDefaultMessage: "Hola, vi su sitio web y me gustaría cotizar un servicio de tecnología.",
   github: "https://github.com/Ca31Noah",
   githubUser: "Ca31Noah",
   linkedin: "https://linkedin.com/in/carlos-noa-87398a27b",
   linkedinUser: "carlos-noa-87398a27b",
-  brandHandle: "Waturito",
-  languages: [
-    { name: "Español", level: "Nativo" },
-    { name: "Inglés", level: "Intermedio (B1/B2)" }
-  ],
-  softSkills: [
-    "Proactivo y orientado a resultados",
-    "Capacidad de trabajo en equipo multidisciplinario",
-    "Mente abierta y adaptabilidad continua",
-    "Resolución analítica de problemas complejos",
-    "Gestión de proyectos independientes"
-  ]
+  brandHandle: "Soluciones IT"
 };
 
 export const getWhatsAppUrl = (customMessage) => {

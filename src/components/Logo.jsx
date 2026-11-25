@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-export default function Logo({ className = "w-9 h-9", showText = true, subtitle = "Desarrollador" }) {
+export default function Logo({ className = "w-9 h-9", showText = true, subtitle = "Soluciones IT" }) {
   return (
     <div className="flex items-center space-x-3 group cursor-pointer select-none">
       <div className={`relative flex items-center justify-center ${className} transition-transform duration-300 group-hover:scale-105`}>

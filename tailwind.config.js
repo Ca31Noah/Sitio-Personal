@@ -13,6 +13,9 @@ export default {
         neonBlue: '#38bdf8',
         neonPurple: '#a855f7',
       },
+      animation: {
+        'spin-slow': 'spin 6s linear infinite',
+      },
     },
   },
   plugins: [],

@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import { projects, personalInfo } from '../data/portfolioData';
-import { 
-  FolderGit2, 
-  Github, 
-  ExternalLink, 
-  Sparkles, 
-  X, 
-  CheckCircle2, 
-  AlertCircle, 
-  Layers, 
-  Code2,
-  ArrowRight
-} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects } from '../data/portfolioData';
+import { FolderGit2, Github, Sparkles, X, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem } from './motion/Reveal';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -32,43 +23,46 @@ export default function Projects() {
     <section id="proyectos" className="py-20 md:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <Reveal className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200/80 dark:border-indigo-800/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
-            <span>Casos de Estudio &amp; Desarrollo</span>
+            <span>Casos y soluciones implementadas</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Proyectos de Ingeniería Destacados
-          </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 text-base sm:text-lg">
-            Sistemas reales desarrollados con rigor técnico: algoritmos de visión por computador, optimización de rutas públicas, análisis forense de redes y aplicaciones nativas.
-          </p>
-        </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Soluciones con impacto real</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-300 text-base sm:text-lg">Ejemplos de sistemas y aplicaciones desarrolladas para resolver retos técnicos concretos: automatización, optimización, seguridad y experiencia digital.</p>
+        </Reveal>
 
         {/* Filtros Interactivos */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+        <Reveal className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
           {filterTabs.map((tab) => (
-            <button
+            <motion.button
               key={tab.id}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setActiveFilter(tab.id)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                 activeFilter === tab.id
-                  ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-md shadow-sky-500/20 scale-105'
+                  ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-md shadow-sky-500/20'
                   : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </Reveal>
 
-        {/* Grid de Proyectos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => (
-            <div
+            <motion.div
+              layout
               key={project.id}
-              className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200/90 dark:border-slate-800 transition-all duration-300 hover:border-sky-400 dark:hover:border-sky-500 hover:shadow-xl group flex flex-col justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.35 }}
+              whileHover={{ y: -6 }}
+              className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200/90 dark:border-slate-800 transition-colors duration-300 hover:border-sky-400 dark:hover:border-sky-500 hover:shadow-xl group flex flex-col justify-between"
             >
               <div>
                 {/* Cabecera del proyecto */}
@@ -145,16 +139,17 @@ export default function Projects() {
                 </button>
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
       </div>
 
-      {/* Modal Interactivo de Ficha Técnica */}
+      <AnimatePresence>
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm">
+          <motion.div initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 16, scale: 0.98 }} transition={{ duration: 0.25 }} className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl max-h-[90vh] overflow-y-auto">
             
             <button
               onClick={() => setSelectedProject(null)}
@@ -242,9 +237,10 @@ export default function Projects() {
 
             </div>
 
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
     </section>
   );

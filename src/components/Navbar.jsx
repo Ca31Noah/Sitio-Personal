@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
-import { getWhatsAppUrl, personalInfo } from '../data/portfolioData';
+import { getWhatsAppUrl } from '../data/portfolioData';
 import { Menu, X, MessageCircle, Sun, Moon, Sparkles } from 'lucide-react';
 
 export default function Navbar({ isDarkMode, setIsDarkMode }) {
@@ -8,9 +9,7 @@ export default function Navbar({ isDarkMode, setIsDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -18,10 +17,10 @@ export default function Navbar({ isDarkMode, setIsDarkMode }) {
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
     { name: 'Servicios', href: '#servicios' },
+    { name: 'Especialidades', href: '#areas' },
+    { name: 'Proceso', href: '#proceso' },
     { name: 'Cotizador', href: '#cotizador', highlight: true },
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Trayectoria', href: '#trayectoria' },
-    { name: 'Habilidades', href: '#habilidades' },
+    { name: 'Casos', href: '#proyectos' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -103,39 +102,48 @@ export default function Navbar({ isDarkMode, setIsDarkMode }) {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="lg:hidden bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-5 pt-3 pb-6 space-y-2 shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`px-3 py-2.5 rounded-xl text-base font-medium flex items-center justify-between transition ${
-                  link.highlight
-                    ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50 font-semibold'
-                    : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
-                }`}
-              >
-                <span>{link.name}</span>
-                {link.highlight && <span className="text-xs px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300">Interactivo</span>}
-              </a>
-            ))}
-          </div>
-
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center space-x-2 w-full py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/20"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Contactar por WhatsApp (+593)</span>
-            </a>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="lg:hidden overflow-hidden bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-xl"
+          >
+            <div className="px-5 pt-3 pb-6 space-y-2">
+              <div className="flex flex-col space-y-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`px-3 py-2.5 rounded-xl text-base font-medium flex items-center justify-between transition ${
+                      link.highlight
+                        ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50 font-semibold'
+                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {link.highlight && <span className="text-xs px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300">Interactivo</span>}
+                  </a>
+                ))}
+              </div>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-2 w-full py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/20"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Contactar por WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
