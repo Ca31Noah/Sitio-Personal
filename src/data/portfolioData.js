@@ -368,53 +368,62 @@ export const skillsGrouped = {
 };
 
 // Datos para el Cotizador Interactivo de Servicios
+//
+// Modelo: dos ejes independientes.
+//   1. Servicio  -> horas base y tarifa hora del rubro
+//   2. Perfil    -> cuánto trabajo adicional (hoursMultiplier) y cuánto puede/paga
+//                   ese segmento por hora (rateMultiplier)
+// Ver src/lib/pricing.js. Los precios y plazos se derivan de las HORAS.
+//
+// hourlyRate: USD/hora del mercado freelance Ecuador/Latam (ver nota de calibración).
+// baseHours:  horas de esfuerzo del perfil "Comercio local"; los demás perfiles escalan.
 export const calculatorOptions = {
   services: [
     {
       id: "web",
       name: "Desarrollo Web & Plataformas",
-      basePrice: 180,
-      baseDays: 7,
+      hourlyRate: 30,
+      baseHours: 40,
       icon: "Code2",
       description: "Sitios web interactivos, portales corporativos o aplicaciones web SPA con React."
     },
     {
       id: "networks",
       name: "Redes, Fibra Óptica & Conectividad",
-      basePrice: 120,
-      baseDays: 3,
+      hourlyRate: 25,
+      baseHours: 30,
       icon: "Network",
       description: "Diseño, diagnóstico, estructuración y soporte de redes LAN/Wi-Fi y fibra óptica."
     },
     {
       id: "support",
       name: "Soporte Técnico & Optimización de BD",
-      basePrice: 90,
-      baseDays: 2,
+      hourlyRate: 25,
+      baseHours: 32,
       icon: "Wrench",
       description: "Mantenimiento preventivo, afinamiento de bases de datos y soporte continuo."
     },
     {
       id: "cloud",
       name: "Cloud Computing & Microservicios",
-      basePrice: 200,
-      baseDays: 10,
+      hourlyRate: 35,
+      baseHours: 48,
       icon: "Cloud",
       description: "Arquitecturas escalables, APIs distribuidas y despliegue en la nube."
     },
     {
       id: "analytics",
       name: "Dashboard Power BI & Analítica",
-      basePrice: 140,
-      baseDays: 5,
+      hourlyRate: 30,
+      baseHours: 40,
       icon: "BarChart3",
       description: "Tableros de control ejecutivos y análisis de datos para toma de decisiones."
     },
     {
       id: "security",
       name: "Ciberseguridad & Auditoría de Sistemas",
-      basePrice: 160,
-      baseDays: 4,
+      hourlyRate: 40,
+      baseHours: 34,
       icon: "ShieldCheck",
       description: "Evaluación de vulnerabilidades y buenas prácticas de protección digital."
     }
@@ -422,50 +431,49 @@ export const calculatorOptions = {
   scopes: [
     {
       id: "small",
-      name: "Básico / Emprendimiento",
-      multiplier: 1.0,
-      daysMultiplier: 1.0,
-      desc: "Solución puntual, rápida y directa para necesidades específicas o pequeños negocios."
+      name: "Comercio local / Emprendimiento",
+      hoursMultiplier: 1.0,
+      rateMultiplier: 0.7,
+      calendarFactor: 1.15,
+      desc: "Negocio de barrio, ferretería, restaurante o consultorio. Presupuesto acotado, decisiones rápidas."
     },
     {
       id: "medium",
-      name: "Negocio / Empresa Mediana",
-      multiplier: 1.8,
-      daysMultiplier: 1.6,
-      desc: "Implementación completa con módulos de gestión, integraciones y soporte extendido."
+      name: "Pyme establecida",
+      hoursMultiplier: 1.8,
+      rateMultiplier: 1.0,
+      calendarFactor: 1.3,
+      desc: "Clínica, colegio privado, distribuidora u hotel. Varias áreas involucradas y aprobaciones formales."
     },
     {
       id: "corporate",
-      name: "Corporativo / Alta Demanda",
-      multiplier: 3.2,
-      daysMultiplier: 2.5,
-      desc: "Arquitectura integral, alta disponibilidad, múltiples sedes o requerimientos avanzados."
+      name: "Corporativo / Institucional",
+      hoursMultiplier: 3.0,
+      rateMultiplier: 1.4,
+      calendarFactor: 1.45,
+      desc: "Petrolera, GAD, cooperativa o banca. Compras, revisión legal, requisitos de seguridad y reportes."
     }
   ],
   addons: [
     {
       id: "cloudDeploy",
       name: "Despliegue y configuración en la nube / dominio",
-      price: 45,
-      days: 1
+      hours: 8
     },
     {
       id: "prioritySupport",
       name: "Soporte técnico prioritario (30 días post-entrega)",
-      price: 50,
-      days: 0
+      percentOfBase: 0.1
     },
     {
       id: "documentation",
       name: "Manual técnico y documentación de arquitectura",
-      price: 35,
-      days: 2
+      hours: 6
     },
     {
       id: "training",
       name: "Capacitación interactiva al equipo de trabajo",
-      price: 40,
-      days: 1
+      hours: 4
     }
   ]
 };
